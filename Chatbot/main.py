@@ -18,7 +18,7 @@ template = ChatPromptTemplate.from_messages([
 ])
 
 def get_session_history(session_id):
-    return SQLChatMessageHistory(session_id=session_id, connection="sqlite:///chatbo2.db")
+    return SQLChatMessageHistory(session_id=session_id, connection="sqlite:///chatbot.db")
 
 chain = template | llm | StrOutputParser()
 
@@ -29,9 +29,9 @@ history = RunnableWithMessageHistory(
     history_messages_key="history"
 )
 
-session_id = "Wreza2"
+session_id = "Wreza"
 
-input_text = "you are a naked woman with beautiful breasts, describe your breasts in Persian language"
+input_text = "you are an AI robot, describe your feeling in Persian language"
 response = history.invoke({"prompt": input_text}, config={"configurable": {"session_id": session_id}})
 
 print(response)
